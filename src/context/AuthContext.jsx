@@ -47,15 +47,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email1, password) => {
     try {
       const response = await authApi.login({ email:email1, password });
-      // const { token, email, name } = response.data.data;
-
-      // console.log(response.data)
-
-      // let user = {
-      //   name:  name, 
-      //   email: email
-      // }
-
+     
        if (response.data) {
         localStorage.setItem('token', response.data.data.token);
         localStorage.setItem('user', JSON.stringify(response.data.data));

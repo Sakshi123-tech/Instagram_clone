@@ -12,11 +12,6 @@ function CommentForm({ postId, onCommentAdded }) {
 
     setLoading(true)
 
-    // try {
-    //   const response = await commentApi.createComment(postId, { text })
-    //   setText('')
-    //   onCommentAdded(response.data)
-    // } 
      try {
       const response = await commentApi.createComment(postId, { text })
       const newComment = response.data.data
