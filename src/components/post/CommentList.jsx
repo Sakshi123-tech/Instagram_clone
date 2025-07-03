@@ -6,18 +6,7 @@ function CommentList({ postId, newComment }) {
   const [comments, setComments] = useState([])
   const [loading, setLoading] = useState(true)
   const { user } = useAuth()
-
-  useEffect(() => {
-    fetchComments()
-  }, [postId])
-
-    useEffect(() => {
-    if (newComment) {
-      setComments(prev => [newComment, ...prev])
-    }
-  }, [newComment])
-
-  const fetchComments = async () => {
+const fetchComments = async () => {
     try {
       const response = await postApi.getPostComments(postId)
       setComments(response.data.data)
@@ -28,6 +17,27 @@ function CommentList({ postId, newComment }) {
       setLoading(false)
     }
   }
+  useEffect(() => {
+    fetchComments()
+  }, [postId])
+
+    useEffect(() => {
+    if (newComment) {
+      setComments(prev => [newComment, ...prev])
+    }
+  }, [newComment])
+
+  // const fetchComments = async () => {
+  //   try {
+  //     const response = await postApi.getPostComments(postId)
+  //     setComments(response.data.data)
+  //     // console.log(response)
+  //   } catch (error) {
+  //     console.error('Error fetching comments:', error)
+  //   } finally {
+  //     setLoading(false)
+  //   }
+  // }
 
   const handleDelete = async (commentId) => {
     try {
